@@ -236,14 +236,14 @@ if has("gui_running")
     "tell the term has 256 colors
     set t_Co=256
 
-    colorscheme molokai
+    colorscheme railscasts
     set guitablabel=%M%t
     set lines=40
     set columns=115
 
     if has("gui_gnome")
         set term=gnome-256color
-        colorscheme molokai
+        colorscheme railscasts
         set guifont=Monospace\ Bold\ 12
     endif
 
@@ -263,11 +263,11 @@ else
     "set railscasts colorscheme when running vim in gnome terminal
     if $COLORTERM == 'gnome-terminal'
         set term=gnome-256color
-        colorscheme molokai
+        colorscheme railscasts
     else
         if $TERM == 'xterm'
             set term=xterm-256color
-            colorscheme molokai
+            colorscheme railscasts
         else
             colorscheme default
         endif
