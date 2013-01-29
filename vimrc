@@ -1,3 +1,9 @@
+"ruben2m
+let mapleader=","
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+
+
 "avoiding annoying CSApprox warning message
 let g:CSApprox_verbose_level = 0
 
@@ -444,3 +450,17 @@ inoremap <Esc>D <left>
 if has("balloon_eval")
   set noballooneval
 endif
+
+
+"ruben2m
+set guifont=Monospace\ Bold\ 10
+set lines=150 columns=145
+winpos 600 0
+
+set spelllang=es
+set mousemodel=popup
+set nospell
+set spellfile=~/.vim/dict.add
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
+map <f12> :set spell!<cr>
