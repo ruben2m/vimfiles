@@ -381,6 +381,10 @@ endfunction
 
 " Strip trailing whitespace
 function! <SID>StripTrailingWhitespaces()
+    " Only strip if the b:noStripeWhitespace variable isn't set
+    if exists('b:noStripWhitespace')
+        return
+    endif
     " Preparation: save last search, and cursor position.
     let _s=@/
     let l = line(".")
@@ -392,6 +396,7 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+autocmd FileType markdown let b:noStripWhitespace=1
 
 "key mapping for window navigation
 map <C-h> <C-w>h
