@@ -305,10 +305,11 @@ let g:ragtag_global_maps = 1
 let g:syntastic_enable_signs=1
 
 "key mapping for vimgrep result navigation
-map <A-o> :copen<CR>
-map <A-q> :cclose<CR>
-map <A-j> :cnext<CR>
-map <A-k> :cprevious<CR>
+"map <A-o> :copen<CR>
+"map <A-q> :cclose<CR>
+"map <A-j> :cnext<CR>
+"map <A-k> :cprevious<CR>
+"Comento anteriores por mapearlas para java. Ver al final
 
 "key mapping for Gundo
 nnoremap <F4> :GundoToggle<CR>
@@ -469,3 +470,27 @@ set spellfile=~/.vim/dict.add
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$/
 map <f12> :set spell!<cr>
+
+" JAVA
+autocmd Filetype java set makeprg=javac\ -source\ 1.6\ -target\ 1.6\ -d\ '%:p:h:h/bin'\ -cp\ '%:p:h:h/bin'\ $* 
+set errorformat=%A%f:%l:\ %m,%-Z%p^,%-C%.%#
+
+let g:c_is_open = 0
+function! Copenclose()
+    if g:c_is_open
+        cclose
+        let g:c_is_open = 0
+    else
+        copen
+        let g:c_is_open = 1
+    endif
+endfunction
+map <F8> :call Copenclose()<Return>
+map <F9> :cprevious<Return>
+map <F10> :cnext<Return>
+"Fichero actual
+map <C-F11> :make '%'<Return>:let g:c_is_open=1<Return>:copen<Return>
+"Todos
+map <S-F11> :make '%:p:h/'*.java<Return>:let g:c_is_open=1<Return>:copen<Return>
+"map <F11> :let directorio = escape(expand("%:p:h:h/bin"), '\ ')<Return> :cd s:directorio<Return> :!java '%:t:r'<Return>
+map <F11> :cd %:p:h:h/bin<Return> :!java %:t:r<Return>
