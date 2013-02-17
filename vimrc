@@ -2,6 +2,8 @@
 let mapleader=","
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
+
+
 "avoiding annoying CSApprox warning message
 let g:CSApprox_verbose_level = 0
 
@@ -236,8 +238,6 @@ if has("gui_running")
 
     colorscheme railscasts
     set guitablabel=%M%t
-    set lines=40
-    set columns=115
 
     if has("gui_gnome")
         set term=gnome-256color
@@ -276,7 +276,6 @@ endif
 " else in your ~/.vimrc file, such as:
 " nmap <silent> <Leader>q <Plug>PeepOpen
 
-" Si existe fichero actual, ejecutamos NERDTreeFind que busca el archivo actual
 function! NERDTreeToggleMax()
     if exists("t:NERDTreeBufName") || (@% == '')
       :NERDTreeToggle
@@ -315,7 +314,6 @@ let g:syntastic_enable_signs=1
 "map <A-q> :cclose<CR>
 "map <A-j> :cnext<CR>
 "map <A-k> :cprevious<CR>
-"Comento anteriores por mapearlas para java. Ver al final
 
 "key mapping for Gundo
 nnoremap <F4> :GundoToggle<CR>
@@ -388,10 +386,6 @@ endfunction
 
 " Strip trailing whitespace
 function! <SID>StripTrailingWhitespaces()
-    " Only strip if the b:noStripeWhitespace variable isn't set
-    if exists('b:noStripWhitespace')
-        return
-    endif
     " Preparation: save last search, and cursor position.
     let _s=@/
     let l = line(".")
@@ -403,7 +397,6 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-autocmd FileType markdown let b:noStripWhitespace=1
 
 "key mapping for window navigation
 map <C-h> <C-w>h
@@ -449,7 +442,7 @@ imap {<CR> {}<ESC>i<CR><ESC>O
 " NERDTree settings
 nmap wm :NERDTree<cr>
 let NERDTreeIgnore=['\.swp$']
-" Cerramos vim si solo existe una ventana de NERDTree abierta y ninguna más.
+let NERDTreeQuitOnOpen = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 nnoremap <Esc>A <up>
@@ -465,6 +458,12 @@ if has("balloon_eval")
   set noballooneval
 endif
 
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg)
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:bg .' guifg='. a:fg
+endfunction
 
 "ruben2m
 set guifont=Monospace\ Bold\ 10
@@ -493,12 +492,18 @@ function! Copenclose()
         let g:c_is_open = 1
     endif
 endfunction
-map <F8> :call Copenclose()<Return>
-map <F9> :cprevious<Return>
-map <F10> :cnext<Return>
+
+map <silent> <F8> :call Copenclose()<Return>
+map <silent> <F9> :cprevious<Return>
+map <silent> <F10> :cnext<Return>
 "Fichero actual
-map <C-F11> :make '%'<Return>:let g:c_is_open=1<Return>:copen<Return>
+map <C-F11> :w<Return>:make '%'<Return> ":let g:c_is_open=1<Return>:copen<Return>
 "Todos
-map <S-F11> :make '%:p:h/'*.java<Return>:let g:c_is_open=1<Return>:copen<Return>
-"map <F11> :let directorio = escape(expand("%:p:h:h/bin"), '\ ')<Return> :cd s:directorio<Return> :!java '%:t:r'<Return>
+map <S-F11> :make '%:p:h/'*.java<Return>":let g:c_is_open=1<Return>:copen<Return>
 map <F11> :cd %:p:h:h/bin<Return> :!java %:t:r<Return>
+
+
+call NERDTreeHighlightFile('class', 'gray', 'NONE')
+let g:syntastic_java_javac_delete_output = 0
+autocmd Filetype java let g:syntastic_java_javac_classpath = '%:p:h:h/bin'
+autocmd Filetype java let g:syntastic_java_javac_options = '-Xlint -source 1.6 -target 1.6 -d %:p:h:h/bin'
