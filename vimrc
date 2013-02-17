@@ -2,8 +2,6 @@
 let mapleader=","
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-
-
 "avoiding annoying CSApprox warning message
 let g:CSApprox_verbose_level = 0
 
@@ -451,6 +449,8 @@ imap {<CR> {}<ESC>i<CR><ESC>O
 " NERDTree settings
 nmap wm :NERDTree<cr>
 let NERDTreeIgnore=['\.swp$']
+" Cerramos vim si solo existe una ventana de NERDTree abierta y ninguna más.
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 nnoremap <Esc>A <up>
 nnoremap <Esc>B <down>
