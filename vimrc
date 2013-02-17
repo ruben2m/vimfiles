@@ -278,7 +278,15 @@ endif
 " else in your ~/.vimrc file, such as:
 " nmap <silent> <Leader>q <Plug>PeepOpen
 
-silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+" Si existe fichero actual, ejecutamos NERDTreeFind que busca el archivo actual
+function! NERDTreeToggleMax()
+    if exists("t:NERDTreeBufName") || (@% == '')
+      :NERDTreeToggle
+    else
+      :NERDTreeFind
+    endif
+endfunction
+nmap <silent> <Leader>p :call NERDTreeToggleMax()<CR>
 
 "make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
