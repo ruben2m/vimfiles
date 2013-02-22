@@ -467,8 +467,6 @@ endfunction
 
 "ruben2m
 set guifont=Monospace\ Bold\ 10
-set lines=150 columns=145
-winpos 600 0
 
 set spelllang=es
 set mousemodel=popup
@@ -479,7 +477,7 @@ match ExtraWhitespace /\s\+$/
 map <f12> :set spell!<cr>
 
 " JAVA
-autocmd Filetype java set makeprg=javac\ -source\ 1.6\ -target\ 1.6\ -d\ '%:p:h:h/bin'\ -cp\ '%:p:h:h/bin'\ $* 
+autocmd Filetype java set makeprg=javac\ -source\ 1.6\ -target\ 1.6\ -d\ '%:p:h:h/bin'\ -cp\ '%:p:h:h/bin'\ $*
 
 let g:c_is_open = 0
 function! Copenclose()
