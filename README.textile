@@ -1,8 +1,12 @@
-h1. THIS PROJECT HAS BEEN DISCONTINUED
+h3. Continuación del proyecto de "akitaonrails":https://github.com/akitaonrails/vimfiles
 
-I recommend the vimfiles from YADR (and the entire dotfiles, actually, it's quite nice and well done and maintained)
+Durante mucho tiempo llevo usando estos archivos en mi configuración de VIM para Rails, con la mala suerte que descontinuó este proyecto.
+
+En su página principal recomienda el siguiente plugin:
 
   https://github.com/JeanMertz/omz-to-prezto
+
+pero en Ubuntu me ha dado problemas por lo que decidí continuar este proyecto.
 
 h1. Vim
 
