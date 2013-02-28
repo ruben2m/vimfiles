@@ -495,7 +495,7 @@ map <silent> <F9> :cprevious<Return>
 map <silent> <F10> :cnext<Return>
 "Fichero actual
 " map <C-F11> :w<Return>:make '%'<Return> ":let g:c_is_open=1<Return>:copen<Return>
-map <C-F11> :wvim<Return>:SyntasticCheck<Return>
+map <C-F11> :w<Return>:SyntasticCheck<Return>
 "Todos
 map <S-F11> :make '%:p:h/'*.java<Return>":let g:c_is_open=1<Return>:copen<Return>
 map <F11> :cd %:p:h:h/bin<Return> :!java %:t:r<Return>
