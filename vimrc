@@ -1,6 +1,6 @@
 "ruben2m
 let mapleader=","
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+let g:ackprg="ack-grep -H --nocolor --nogroup --column --type-set haml=.haml"
 
 
 
