@@ -505,3 +505,6 @@ let g:syntastic_java_javac_delete_output = 0
 autocmd Filetype java let g:syntastic_java_javac_classpath = '%:p:h:h/bin'
 autocmd Filetype java let g:syntastic_java_javac_options = '-Xlint -source 1.6 -target 1.6 -d %:p:h:h/bin -sourcepath %:p:h:h/src'
 let g:syntastic_mode_map = { 'mode': 'passive' }
+
+" buffergator
+let g:buffergator_autoexpand_on_split = 0
