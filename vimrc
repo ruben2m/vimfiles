@@ -319,6 +319,7 @@ let g:syntastic_enable_signs=1
 nnoremap <F4> :GundoToggle<CR>
 
 "snipmate setup
+map <C-F12> :call ReloadAllSnippets()<CR>
 try
   source ~/.vim/snippets/support_functions.vim
 catch
@@ -508,3 +509,4 @@ let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " buffergator
 let g:buffergator_autoexpand_on_split = 0
+let g:buffergator_viewport_split_policy = "R"
