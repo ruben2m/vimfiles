@@ -319,7 +319,6 @@ let g:syntastic_enable_signs=1
 nnoremap <F4> :GundoToggle<CR>
 
 "snipmate setup
-map <C-F12> :call ReloadAllSnippets()<CR>
 try
   source ~/.vim/snippets/support_functions.vim
 catch
@@ -446,14 +445,14 @@ let NERDTreeIgnore=['\.swp$']
 let NERDTreeQuitOnOpen = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-"nnoremap <Esc>A <up>
-"nnoremap <Esc>B <down>
-"nnoremap <Esc>C <right>
-"nnoremap <Esc>D <left>
-"inoremap <Esc>A <up>
-"inoremap <Esc>B <down>
-"inoremap <Esc>C <right>
-"inoremap <Esc>D <left>
+nnoremap <Esc>A <up>
+nnoremap <Esc>B <down>
+nnoremap <Esc>C <right>
+nnoremap <Esc>D <left>
+inoremap <Esc>A <up>
+inoremap <Esc>B <down>
+inoremap <Esc>C <right>
+inoremap <Esc>D <left>
 
 if has("balloon_eval")
   set noballooneval
@@ -506,7 +505,3 @@ let g:syntastic_java_javac_delete_output = 0
 autocmd Filetype java let g:syntastic_java_javac_classpath = '%:p:h:h/bin'
 autocmd Filetype java let g:syntastic_java_javac_options = '-Xlint -source 1.6 -target 1.6 -d %:p:h:h/bin -sourcepath %:p:h:h/src'
 let g:syntastic_mode_map = { 'mode': 'passive' }
-
-" buffergator
-let g:buffergator_autoexpand_on_split = 0
-let g:buffergator_viewport_split_policy = "R"
