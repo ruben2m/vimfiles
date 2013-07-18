@@ -1,0 +1,44 @@
+#!/bin/sh
+#/ Usage: vim-arduino <pde file> [board] [serialport]
+#/ Invokes the Arduino IDE command line runner to compile and deploy
+#/ Arduino sketches.
+#/
+
+pde_file=
+switch="-c"
+
+while [ $# -gt 0 ]
+do
+    case "$1" in
+        -s|--serialport)
+            shift
+            port=$1
+            shift
+            ;;
+        -b|--board)
+            shift
+            board=$1
+            shift
+            ;;
+        -d|--deploy)
+            switch="--upload"
+            shift
+            ;;
+        -c|--compile)
+            switch="--verify"
+            shift
+            ;;
+        *)
+            if [ -z "$pde_file" ]
+            then pde_file="$1"
+            fi
+            shift
+            ;;
+    esac
+done
+
+
+arduino \
+  --board arduino:sam:arduino_due_x_dbg \
+  --port /dev/ttyACM0 \
+  $switch $pde_file

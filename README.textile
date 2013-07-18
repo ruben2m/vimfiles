@@ -8,6 +8,11 @@ En su página principal recomienda el siguiente plugin:
 
 pero en Ubuntu me ha dado problemas por lo que decidí continuar este proyecto.
 
+He implementado soporte para arduino modificando un plugin existente "vim-arduino-master"
+* :<map>aa para abrir en Arduino el archivo actual.
+* :<map>ac para compilar el archivo actual.
+* :<map>ad para compilar y mandar el archivo a la máquina.
+
 h1. Vim
 
 It is recommended that you use gVim in either Windows or Linux and MacVim for

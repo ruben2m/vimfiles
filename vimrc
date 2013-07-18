@@ -510,3 +510,6 @@ let g:syntastic_mode_map = { 'mode': 'passive' }
 " buffergator
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_viewport_split_policy = "R"
+
+au BufRead,BufNewFile *.pde set filetype=arduino
+au BufRead,BufNewFile *.ino set filetype=arduino
