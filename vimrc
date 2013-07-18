@@ -406,6 +406,7 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 "key mapping for saving file
+imap <C-s> <C-c>:w<CR>
 nmap <C-s> :w<CR>
 
 "key mapping for tab navigation
