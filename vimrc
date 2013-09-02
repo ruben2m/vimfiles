@@ -387,7 +387,11 @@ endfunction
 
 " Strip trailing whitespace
 function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
+    " Solo los quito si no es markdown
+    if exists('b:noStripWhitespaces')
+      return
+    end
+    " Preparation : save last search, and cursor position.
     let _s=@/
     let l = line(".")
     let c = col(".")
@@ -398,6 +402,7 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+autocmd FileType markdown let b:noStripWhitespaces=1
 
 "key mapping for window navigation
 map <C-h> <C-w>h
@@ -414,10 +419,14 @@ nmap <S-Tab> gt
 nmap <C-S-Tab> gT
 
 "Key mapping for textmate-like indentation
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
+"nmap <D-[> <<
+"nmap <D-]> >>
+"vmap <D-[> <gv
+"vmap <D-]> >gv
+nmap <A-,> <<
+nmap <A-.> >>
+vmap <A-,> <gv
+vmap <A-.> >gv
 
 let ScreenShot = {'Icon':0, 'Credits':0, 'force_background':'#FFFFFF'}
 

@@ -38,7 +38,7 @@ do
 done
 
 
+  #--port /dev/ttyACM0 \
 arduino \
   --board arduino:sam:arduino_due_x_dbg \
-  --port /dev/ttyACM0 \
   $switch $pde_file
