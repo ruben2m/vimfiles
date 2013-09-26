@@ -488,7 +488,7 @@ match ExtraWhitespace /\s\+$/
 map <f12> :set spell!<cr>
 
 " JAVA
-autocmd Filetype java set makeprg=javac\ -source\ 1.6\ -target\ 1.6\ -d\ '%:p:h:h/bin'\ -cp\ '%:p:h:h/bin'\ $*
+autocmd Filetype java set makeprg=javac\ -source\ 1.7\ -target\ 1.7\ -d\ '%:p:h:h/bin'\ -cp\ '%:p:h:h/bin'\ $*
 
 let g:c_is_open = 0
 function! Copenclose()
@@ -514,7 +514,7 @@ map <F11> :cd %:p:h:h/bin<Return> :!java %:t:r<Return>
 call NERDTreeHighlightFile('class', 'gray', 'NONE')
 let g:syntastic_java_javac_delete_output = 0
 autocmd Filetype java let g:syntastic_java_javac_classpath = '%:p:h:h/bin'
-autocmd Filetype java let g:syntastic_java_javac_options = '-Xlint -source 1.6 -target 1.6 -d %:p:h:h/bin -sourcepath %:p:h:h/src'
+autocmd Filetype java let g:syntastic_java_javac_options = '-Xlint -source 1.7 -target 1.7 -d %:p:h:h/bin -sourcepath %:p:h:h/src'
 let g:syntastic_mode_map = { 'mode': 'passive' }
 
 " buffergator
