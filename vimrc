@@ -71,6 +71,9 @@ set statusline+=%=      "left/right separator
 set statusline+=%c,     "cursor column
 set statusline+=%l/%L   "cursor line/total lines
 set statusline+=\ %P    "percent through file
+set statusline+=\ %#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 set laststatus=2
 
 "turn off needless toolbar on gvim/mvim
@@ -501,15 +504,22 @@ function! Copenclose()
     endif
 endfunction
 
-map <silent> <F8> :call Copenclose()<Return>
-map <silent> <F9> :cprevious<Return>
-map <silent> <F10> :cnext<Return>
-"Fichero actual
-" map <C-F11> :w<Return>:make '%'<Return> ":let g:c_is_open=1<Return>:copen<Return>
-map <C-F11> :w<Return>:SyntasticCheck<Return>
-"Todos
-map <S-F11> :make '%:p:h/'*.java<Return>":let g:c_is_open=1<Return>:copen<Return>
-map <F11> :cd %:p:h:h/bin<Return> :!java %:t:r<Return>
+"Compilar Fichero actual
+map <C-F11> :w<Return>:SyntasticCheck<Return>:Errors<Return>
+imap <C-F11> <C-c>:w<Return>:SyntasticCheck<Return>:Errors<Return>
+
+" C
+autocmd FileType c let g:syntastic_c_compiler_options = ' -o -std=gnu99 '
+autocmd FileType c map <F11> :!gcc -o %:t:r %:p<Return>:!./%:t:r<Return>
+
+" JAVA
+"Compilar Todos los ficheros (solo java)
+autocmd Filetype java map <S-F11> :make '%:p:h/'*.java<Return>":let g:c_is_open=1<Return>:copen<Return>
+autocmd Filetype java map <silent> <F8> :call Copenclose()<Return>
+autocmd Filetype java map <silent> <F9> :cprevious<Return>
+autocmd Filetype java map <silent> <F10> :cnext<Return>
+"Ejecutar el fichero actual
+autocmd Filetype java map <F11> :cd %:p:h:h/bin<Return> :!java %:t:r<Return>
 
 call NERDTreeHighlightFile('class', 'gray', 'NONE')
 let g:syntastic_java_javac_delete_output = 0
