@@ -533,3 +533,4 @@ let g:buffergator_viewport_split_policy = "R"
 
 au BufRead,BufNewFile *.pde set filetype=arduino
 au BufRead,BufNewFile *.ino set filetype=arduino
+let g:ctrlp_working_path_mode = ''
