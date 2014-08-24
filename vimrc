@@ -510,19 +510,24 @@ imap <C-F11> <C-c>:w<Return>:SyntasticCheck<Return>:Errors<Return>
 
 " C
 autocmd FileType c let g:syntastic_c_compiler_options = ' -o -std=gnu99 '
-autocmd FileType c map <F11> :!gcc -o %:t:r %:p<Return>:!./%:t:r<Return>
+autocmd FileType c map <S-F11> :!rm %:t:r<Return>:!gcc -o %:t:r %:p<Return>
+autocmd FileType c map <F11> :!rm %:t:r<Return>:!gcc -o %:t:r %:p<Return>:!./%:t:r<Return>
 
 " JAVA
 "Compilar Todos los ficheros (solo java)
+autocmd Filetype java map <silent> <F8> :lclose<Return>
+autocmd Filetype java map <silent> <F9> :lprevious<Return>
+autocmd Filetype java map <silent> <F10> :lnext<Return>
+
 autocmd Filetype java map <S-F11> :make '%:p:h/'*.java<Return>":let g:c_is_open=1<Return>:copen<Return>
-autocmd Filetype java map <silent> <F8> :call Copenclose()<Return>
-autocmd Filetype java map <silent> <F9> :cprevious<Return>
-autocmd Filetype java map <silent> <F10> :cnext<Return>
+autocmd Filetype java map <silent> <S-F8> :call Copenclose()<Return>
+autocmd Filetype java map <silent> <S-F9> :cprevious<Return>
+autocmd Filetype java map <silent> <S-F10> :cnext<Return>
 "Ejecutar el fichero actual
 autocmd Filetype java map <F11> :cd %:p:h:h/bin<Return> :!java %:t:r<Return>
 
 call NERDTreeHighlightFile('class', 'gray', 'NONE')
-let g:syntastic_java_javac_delete_output = 0
+autocmd Filetype java let g:syntastic_java_javac_delete_output = 0
 autocmd Filetype java let g:syntastic_java_javac_classpath = '%:p:h:h/bin'
 autocmd Filetype java let g:syntastic_java_javac_options = '-Xlint -source 1.7 -target 1.7 -d %:p:h:h/bin -sourcepath %:p:h:h/src'
 let g:syntastic_mode_map = { 'mode': 'passive' }
