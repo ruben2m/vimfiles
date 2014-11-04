@@ -451,7 +451,7 @@ let g:user_zen_settings = {
  \}
 
 " when press { + Enter, the {} block will expand.
-imap {<CR> {}<ESC>i<CR><ESC>O
+"imap {<CR> {}<ESC>i<CR><ESC>O " lo quito pq hace un paron al escribir {
 
 " NERDTree settings
 nmap wm :NERDTree<cr>
